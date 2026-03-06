@@ -5,18 +5,23 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo '코드를 가져왔습니다.'
+                checkout scm
             }
         }
 
         stage('Build') {
             steps {
                 echo 'Docker 이미지를 빌드합니다.'
+                sh 'docker build -t my-app ./INFRA/docker-practice'
             }
         }
 
         stage('Deploy') {
             steps {
                 echo '배포를 시작합니다.'
+                sh 'docker stop my-app || true'
+                sh 'docker rm my-app || true'
+                sh 'docker run -d -p 80:80 --name my-app my-app'
             }
         }
     }
