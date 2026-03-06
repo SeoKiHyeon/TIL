@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo '코드를 가져왔습니다. v2'
+                echo '코드를 가져왔습니다. v3'
                 checkout scm
             }
         }
