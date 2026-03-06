@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo '코드를 가져왔습니다.'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Docker 이미지를 빌드합니다.'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo '배포를 시작합니다.'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo '파이프라인 성공!'
+        }
+        failure {
+            echo '파이프라인 실패!'
+        }
+    }
+}
