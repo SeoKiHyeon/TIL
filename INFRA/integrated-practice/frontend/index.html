@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>통합 실습</title>
+</head>
+<body>
+  <h1>Frontend</h1>
+  <p>Spring Boot API 호출 테스트:</p>
+  <button onclick="callApi()">API 호출</button>
+  <p id="result"></p>
+
+  <script>
+    function callApi() {
+      fetch('/api/hello')
+        .then(res => res.text())
+        .then(data => document.getElementById('result').innerText = data);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo '코드를 가져왔습니다.'
+                checkout scm
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Docker 이미지를 빌드합니다.'
+                sh 'docker compose -f INFRA/integrated-practice/docker-compose.yml build'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo '배포를 시작합니다.'
+                sh 'docker compose -f INFRA/integrated-practice/docker-compose.yml up -d'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo '파이프라인 성공!'
+        }
+        failure {
+            echo '파이프라인 실패!'
+        }
+    }
+}
