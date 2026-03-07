@@ -12,14 +12,14 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Docker 이미지를 빌드합니다.'
-                sh 'docker compose -f INFRA/integrated-practice/docker-compose.yml build'
+                sh 'docker-compose -f INFRA/integrated-practice/docker-compose.yml build'
             }
         }
 
         stage('Deploy') {
             steps {
                 echo '배포를 시작합니다.'
-                sh 'docker compose -f INFRA/integrated-practice/docker-compose.yml up -d'
+                sh 'docker-compose -f INFRA/integrated-practice/docker-compose.yml up -d'
             }
         }
     }
